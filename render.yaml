@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: tv-display
+    runtime: node
+    plan: starter              # القرص الدائم لا يعمل على الباقة المجانية
+    buildCommand: ""           # لا تبعيات — لا شيء لبنائه
+    startCommand: node server.js
+    healthCheckPath: /api/yalanji/menu
+    envVars:
+      - key: DATA_DIR
+        value: /var/data
+      - key: NODE_VERSION
+        value: "22"
+    disk:
+      name: tv-data
+      mountPath: /var/data
+      sizeGB: 1
